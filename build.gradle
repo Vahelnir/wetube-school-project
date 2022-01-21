@@ -1,0 +1,47 @@
+plugins {
+    id 'java'
+    id 'war'
+}
+
+group 'fr.wetube'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    junitVersion = '5.8.2'
+}
+
+sourceCompatibility = "11"
+targetCompatibility = "11"
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+dependencies {
+    implementation('org.jetbrains:annotations:22.0.0')
+    compileOnly('javax.servlet:javax.servlet-api:4.0.1')
+
+    implementation("javax.servlet:jstl:1.2")
+
+    implementation('javax.enterprise:cdi-api:2.0')
+    implementation("org.jboss.weld.servlet:weld-servlet-shaded:3.1.8.Final")
+
+    implementation('org.mariadb.jdbc:mariadb-java-client:3.0.3')
+    implementation("mysql:mysql-connector-java:8.0.28")
+    implementation("com.zaxxer:HikariCP:5.0.1")
+    implementation('org.hibernate:hibernate-core:5.6.3.Final')
+    implementation("org.hibernate:hibernate-hikaricp:5.6.3.Final")
+
+    implementation("org.springframework.security:spring-security-web:5.5.1")
+
+    testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+}
+
+test {
+    useJUnitPlatform()
+}
