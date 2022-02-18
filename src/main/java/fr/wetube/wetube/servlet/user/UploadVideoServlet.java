@@ -3,9 +3,7 @@ package fr.wetube.wetube.servlet.user;
 import fr.wetube.wetube.database.model.User;
 import fr.wetube.wetube.database.model.Video;
 import fr.wetube.wetube.database.model.VideoType;
-import fr.wetube.wetube.database.repository.UserRepository;
 import fr.wetube.wetube.database.repository.VideoRepository;
-import fr.wetube.wetube.form.Field;
 import fr.wetube.wetube.form.Form;
 import fr.wetube.wetube.form.Rule;
 import fr.wetube.wetube.form.rule.NotEmptyRule;
@@ -66,6 +64,7 @@ public class UploadVideoServlet extends HttpServlet {
         video.setPath(path);
         video.setThumbnail(thumbnail);
         video.setAuthor(loggedUser);
+        // TODO: handle a real file upload & file streaming
         video.setType(VideoType.YOUTUBE);
 
         videoRepository.save(video);
@@ -75,13 +74,13 @@ public class UploadVideoServlet extends HttpServlet {
     private Form createForm() {
         Form form = new Form();
         form.addField("title", "text", new Rule[]{ new NotEmptyRule() })
-            .setPlaceholder("Titre de la vidéo");
-        form.addField("description", "textarea", new Rule[]{ new NotEmptyRule() })
-            .setPlaceholder("Url vers la vidéo");
+            .setPlaceholder("Titre");
+        form.addField("description", "textarea", new Rule[]{})
+            .setPlaceholder("Description");
         form.addField("path", "text", new Rule[]{ new NotEmptyRule() })
-            .setPlaceholder("Url vers la vidéo");
+            .setPlaceholder("Url");
         form.addField("thumbnail", "text", new Rule[]{ new NotEmptyRule() })
-            .setPlaceholder("Miniature de la vidéo");
+            .setPlaceholder("Miniature");
         return form;
     }
 }
